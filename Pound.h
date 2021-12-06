@@ -9,13 +9,18 @@ private:
 	int f;
 	int s;
 	double p;
+	bool eq;
+	bool greq;
+	bool leq;
+	bool l;
+	bool gr;
+	bool neq;
 public:
 	int p1;
 	int ff;
 	int ss;
 	double pp;
 	Pound();
-	
 	int enter();
 	void enterMoney();
 	
@@ -23,10 +28,11 @@ public:
 	
 	
 	void returnMoney();
-	double pence(Pound x);
-	
-	void compMoney(Pound x, Pound y);
-	
+	void assMoney(int pou, int shill, double pen);
+	double pence();
+	void booling(Pound x);
+	void compMoney();
+	void compare(Pound x);
 	void sum(Pound x, Pound y);
 	
 	void eSum(Pound x, Pound y);
@@ -34,9 +40,9 @@ public:
 	void uno(Pound x);
 	
 	void minus(Pound x, Pound y);
-	void plusEq(Pound x, Pound y);
+	void plusEq(Pound x);
 
-	void minusEq(Pound x, Pound y);
+	void minusEq(Pound x);
 	
 };
 

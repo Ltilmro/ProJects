@@ -86,24 +86,58 @@ Pound::Pound()
 	{
 		retMon(f, s, p);
 	}
-	double Pound::pence(Pound x)
+	void Pound::assMoney(int pou, int shill, double pen)
 	{
-		return (x.f * 240) + (x.s * 12) + x.p;
+		f = pou;
+		s = shill;
+		p = pen;
+	
 	}
-	void Pound::compMoney(Pound x, Pound y)
+	double Pound::pence()
 	{
-		if (pence(x) < pence(y))
-		{
-			cout << "The second is greater\n";
-		}
-		if (pence(x) > pence(y))
-		{
-			cout << "The first is greater\n";
-		}
-		if (pence(x) == pence(y))
+		return (f * 240) + (s * 12) + p;
+	}
+	void Pound::booling(Pound x)
+	{
+		eq = (pence() == x.pence());
+		greq = (pence() >= x.pence());
+		leq = (pence() <= x.pence());
+		l = (pence() < x.pence());
+		gr = (pence() > x.pence());
+		neq = (pence() != x.pence());
+	}
+	void Pound::compMoney()
+	{
+		if (eq == 1)
 		{
 			cout << "They are equal\n";
 		}
+		if (neq == 1)
+		{
+			cout << "They are not equal\n";
+		}
+		if (leq == 1)
+		{
+			cout << "The fist is not greater\n";
+		}
+		if (gr == 1)
+		{
+			cout << "The first is greater\n";
+		}
+		if (greq == 1)
+		{
+			cout << "The second is not greater\n";
+		}
+		if (l==1)
+		{
+			cout << "The second is greater\n";
+
+		}
+	}
+	void Pound::compare(Pound x)
+	{
+		booling(x);
+		compMoney();
 	}
 	void Pound::sum(Pound x, Pound y)
 	{
@@ -113,7 +147,7 @@ Pound::Pound()
 		int pp2 = y.p * 2;
 		double pp0 = ((pp1 + pp2) % 24);
 		pp = pp0 / 2;
-		if (pp < 0 && x.s + y.s>0)
+		if (pp < 0 && x.s + y.s>0|| pp < 0 && x.f + y.f>0)
 		{
 			ssplus = -1;
 			pp = 12 + pp;
@@ -131,7 +165,7 @@ Pound::Pound()
 	{
 		sum(x, y);
 
-		retMon(ff, ss, pp);
+		assMoney(ff, ss, pp);
 
 
 	}
@@ -150,21 +184,32 @@ Pound::Pound()
 		eSum(x, q);
 
 	}
-	void Pound::plusEq(Pound x, Pound y)
+	void Pound::plusEq(Pound x)
 	{
-		sum(x, y);
-		s = ss;
-		f = ff;
-		p = pp;
+		int ssplus = 0;
+		int ffplus = 0;
+		int pp1 = p * 2;
+		int pp2 = x.p * 2;
+		double pp0 = ((pp1 + pp2) % 24);
+		pp = pp0 / 2;
+		if (pp < 0 && s + x.s>0 || pp < 0 && f + x.f>0)
+		{
+			ssplus = -1;
+			pp = 12 + pp;
+		}
+		ss = (((pp1 + pp2) / 24) + s + x.s) % 20 + ssplus;
+		if (ss < 0 && f + x.f>0)
+		{
+			ffplus = -1;
+			ss = 20 + ss;
+		}
+		ff = (((pp1 + pp2) / 24) + s + x.s) / 20 + f + x.f + ffplus;
+		assMoney(ff, ss, pp);
 	}
-	void Pound::minusEq(Pound x, Pound y)
+	void Pound::minusEq(Pound x)
 	{
 		Pound q;
-
-		q.uno(y);
-		sum(x, q);
-		s = ss;
-		f = ff;
-		p = pp;
+		q.uno(x);
+		plusEq(q);
 	}
 
