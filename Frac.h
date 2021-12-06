@@ -8,6 +8,12 @@ class Frac
 private:
 	long int num;
 	long int den;
+	bool leq;
+	bool eq;
+	bool l;
+	bool neq;
+	bool greq;
+	bool gr;
 public:
 	long int aa;
 	long int bb;
@@ -15,6 +21,7 @@ public:
 	long int dd;
 	long int algo;
 	Frac();
+	void assFrac(long int numer, long int denom);
 	void sNum(long int n);
 	void sDen(long int n);
 	int Algo(long int o, long int p);
@@ -28,7 +35,9 @@ public:
 	void md(long int a1, long int b1, long int c1, long int d1);
 	void multi(Frac x, Frac y);
 	void divide(Frac x, Frac y);
-	void compare(Frac x, Frac y);
-	void uno();
+	void booling(Frac x);
+	void compare(Frac x);
+	void compFrac();
+	void uno(Frac x);
 	void fOut();
 };

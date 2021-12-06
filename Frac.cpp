@@ -10,6 +10,11 @@ using namespace std;
 		num = 0;
 		den = 1;
 	}
+	void Frac::assFrac(long int numer, long int denom)
+	{
+		sNum(numer);
+		sDen(denom);
+	}
 	void Frac::sNum(long int n)
 	{
 		num = n;
@@ -113,7 +118,7 @@ using namespace std;
 		algo = Algo(aa * dd + cc * bb, bb * dd);
 		aa = (aa * dd + cc * bb) / algo;
 		bb = (bb * dd) / algo;
-		cout << aa << "/" << bb << endl;
+		assFrac(aa, bb);
 	}
 	void Frac::minus(Frac x, Frac y)
 	{
@@ -129,14 +134,14 @@ using namespace std;
 			aa = -aa;
 			bb = -bb;
 		}
-		cout << aa << "/" << bb << endl;
+		assFrac(aa, bb);
 	}
 	void Frac::md(long int a1, long int b1, long int c1, long int d1)
 	{
 		algo = Algo(a1 * c1, b1 * d1);
 		a1 = a1 * c1 / algo;
 		b1 = b1 * d1 / algo;
-		cout << a1 << "/" << b1 << endl;
+		assFrac(a1, b1);
 	}
 	void Frac::multi(Frac x, Frac y)
 	{
@@ -146,28 +151,54 @@ using namespace std;
 	{
 		md(x.gNum(), x.gDen(), y.gDen(), y.gNum());
 	}
-	void Frac::compare(Frac x, Frac y)
+	void Frac::booling(Frac x)
 	{
-		aa = x.gNum();
-		bb = x.gDen();
-		cc = y.gNum();
-		dd = y.gDen();
-		if (aa * dd < bb * cc)
-		{
-			cout << "The second fraction is greater\n";
-		}
-		if (aa * dd == bb * cc)
+		aa = gNum();
+		bb = gDen();
+		cc = x.gNum();
+		dd = x.gDen();
+		eq = (aa * dd == bb * cc);
+		neq = (aa * dd != bb * cc);
+		greq = (aa * dd >= bb * cc);
+		leq = (aa * dd <= bb * cc);
+		l = (aa * dd < bb * cc);
+		gr = (aa * dd > bb * cc);
+	}
+	void Frac::compFrac()
+	{
+		if (eq == 1)
 		{
 			cout << "The fractions are equal\n";
 		}
-		if (aa * dd > bb * cc)
+		if (neq == 1)
+		{
+			cout << "The fractions are not equal\n";
+		}
+		if (gr==1)
 		{
 			cout << "The first fraction is greater\n";
 		}
+		if (leq == 1)
+		{
+			cout << "The first fraction is not greater\n";
+		}
+		if (l == 1)
+		{
+			cout << "The second fraction is greater\n";
+		}
+		if (greq == 1)
+		{
+			cout << "The second fraction is not greater\n";
+		}
 	}
-	void Frac::uno()
+	void Frac::compare(Frac x)
 	{
-		cout << -gNum() << "/" << gDen() << endl;
+		booling(x);
+		compFrac();
+	}
+	void Frac::uno(Frac x)
+	{
+		assFrac(-x.gNum(), x.gDen());
 	}
 	void Frac::fOut()
 	{

@@ -12,21 +12,30 @@ int main()
 	a.getFrac();
 	a.fOut();
 	cout << "Unary minus\n";
-	a.uno();
+	Frac u;
+	u.uno(a);
+	u.getFrac();
 	cout << "Enter second fraction\n";
 	Frac b;
 	b.entFrac();
 	b.getFrac();
 	b.fOut();
-	a.compare(a, b);
+	a.compare(b);
 	cout << "Sum is\n";
-	a.plus(a, b);
+	Frac sum;
+	sum.plus(a, b);
+	sum.getFrac();
 	cout << "Difference is\n";
-	a.minus(a, b);
+	Frac min;
+	min.minus(a, b);
+	min.getFrac();
 	cout << "Product is\n";
-	a.multi(a, b);
+	Frac mul;
+	mul.multi(a, b);
+	mul.getFrac();
 	cout << "Quotient is\n";
-	a.divide(a, b);
-
+	Frac div;
+	div.divide(a, b);
+	div.getFrac();
 	return 0;
 }
